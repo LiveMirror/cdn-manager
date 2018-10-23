@@ -1,0 +1,9 @@
+{
+  "name": "cdn-manager",
+  "version": "1.0.0",
+  "description": "cdn-manager",
+  "author": "quazero",
+  "dependencies": {
+    "@dadi/cdn": "^3.2.2"
+  }
+}
