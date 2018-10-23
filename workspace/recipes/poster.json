@@ -1,0 +1,10 @@
+{
+  "recipe": "poster",
+  "settings": {
+    "format": "jpg",
+    "quality": "90",
+    "height": "240",
+    "ratio": "16-9",
+    "resizeStyle": "entropy"
+  }
+}

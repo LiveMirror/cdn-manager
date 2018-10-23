@@ -1,37 +1,58 @@
 # cdn-manager
 
 #### 项目介绍
-根据@dadi/cdn制作的脚手架，专门处理云转码上边的图片，自动剪切处理，标准化海报。
 
-#### 软件架构
-软件架构说明
+根据@dadi/cdn 制作的脚手架，专门处理云转码上边的图片，自动剪切处理，标准化海报。
 
+#### 关键配置
 
-#### 安装教程
+workspace/recipes/poster.json
 
-1. xxxx
-2. xxxx
-3. xxxx
+```
+{
+  "recipe": "poster",
+  "settings": {
+    "format": "jpg",
+    "quality": "90",
+    "height": "240",
+    "ratio": "16-9",
+    "resizeStyle": "entropy"
+  }
+}
+```
 
-#### 使用说明
+设置预处理模块，将图片处理成 16：9 的比例，高度 240PX，并且格式为 jpg，质量为 90%的格式。
+config/config.production.json
 
-1. xxxx
-2. xxxx
-3. xxxx
+```
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8001
+  },
+  "images": {
+    "remote": {
+      "enabled": true,
+      "path": "#"
+    }
+  }
+}
+```
 
-#### 参与贡献
+设置运行端口 8001，设置远程连接 path，比如云转码 express-ffmpeg 绑定的域名https://www.moejj.com.
 
-1. Fork 本项目
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
+#### 运行效果
 
+比如https://www.moejj.com/videos/5bc721ef87af60065e31735e/1.jpg 是云转码上边的图片。
+访问http://127.0.0.1:8001/poster/videos/5bc721ef87af60065e31735e/1.jpg 则会直接返回自动处理成 16：9 格式为 jpg 质量为 90%，高度为 240px，智能剪切的图片。
+预处理设置的链接为 poster，详见上方 recipes 的配置，可以自行进行更改。
 
-#### 码云特技
+#### 更多用法
 
-1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2. 码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5. 码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+https://github.com/dadi/cdn 参考此库。
+
+#### 运行
+
+git clone https://gitee.com/quazero/cdn-manager
+cd cdn-manager
+pm2 start index.js
