@@ -53,6 +53,7 @@ https://github.com/dadi/cdn 参考此库。
 
 #### 运行
 
-git clone https://gitee.com/quazero/cdn-manager
-cd cdn-manager
-pm2 start index.js
+- git clone https://gitee.com/quazero/cdn-manager
+- cd cdn-manager
+- npm install
+- pm2 start index.js
