@@ -65,14 +65,15 @@ config/config.production.json 运行环境配置文件
 ```
 
 expireAt 配置解释
-"0 5 0 \* \* _" 每天凌晨 12 点 5 分刷新缓存
-"0 30 11 _ _ 1-5" 每周星期一到星期五 早上 11 点 30 刷新缓存
-"0 15 14 1 _ _" 每个月一号下午 2 点 15 刷新缓存
-"0 22 _ _ 1-5" 周一到周五晚上 10 点刷新缓存
-"_ 5 4 \* \* 0" 每周日凌晨 4 点 5 分刷新缓存
-ttl 配置解释
-单位秒，默认 3600 秒，一个小时缓存失效，可以自行设置时长。
-/api/flush 可以通过这个 API 手动刷新缓存文件。
+
+- "0 5 0 \* \* \_" 每天凌晨 12 点 5 分刷新缓存
+- "0 30 11 \_ \_ 1-5" 每周星期一到星期五 早上 11 点 30 刷新缓存
+- "0 15 14 1 \_ \_" 每个月一号下午 2 点 15 刷新缓存
+- "0 22 \_ \_ 1-5" 周一到周五晚上 10 点刷新缓存
+- "\_ 5 4 \* \* 0" 每周日凌晨 4 点 5 分刷新缓存
+  ttl 配置解释
+- 单位秒，默认 3600 秒，一个小时缓存失效，可以自行设置时长。
+- /api/flush 可以通过这个 API 手动刷新缓存文件。
 
 ##### image 配置
 
@@ -99,6 +100,7 @@ ttl 配置解释
 
 images 配置项
 一共有三种用法，一种是直接服务同主机图片，服务本地图片，一种是服务远程图片，最后一种是亚马逊和 Digital Ocean Space 云储存。
+
 **directory**
 服务本地文件，直接指定 path 为文件夹地址即可直接处理本地图片。例如/www/express-ffmpeg/public，然后将图片地址 host 更改为 CDN 地址即可。
 
@@ -137,19 +139,22 @@ workspace/recipes/recipe.json 配置文件
 ```
 
 recipe 文件是预配置格式处理文件，在 workspace/recipes 文件夹中建立。
-"recipe"参数设置必须和文件名一致。
-settings 中可以设置的选项：
-blur 模糊
-filter
-flip 翻动
-format 格式
-gravity 设置裁剪区域
-ratio 比例
-rotate 旋转
-width 宽度
-height 高度
-resizeStyle 裁剪模式 推荐 entropy
-等，详见 dadi/cdn 文档
+
+- "recipe"参数设置必须和文件名一致。
+  settings 中可以设置的选项：
+- blur 模糊
+- filter 设置裁剪处理算法
+- flip 翻动
+- format 格式
+- gravity 设置裁剪区域
+- ratio 比例
+- rotate 旋转
+- width 宽度
+- height 高度
+- resizeStyle 裁剪模式 推荐 entropy
+  等，详见 dadi/cdn 文档
+
+设置完成之后，比如 recipe 为 poster，则访问链接为 cdnhost/poster/yourpath/1.jpg
 
 #### 运行
 
